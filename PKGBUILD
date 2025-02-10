@@ -25,6 +25,9 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
+_os="$( \
+  uname \
+    -o)"
 _py="python"
 _proj="gnome"
 _pkg="yelp"
@@ -52,6 +55,11 @@ depends=(
   'docbook-xsl'
   'mallard-ducktype'
 )
+if [[ "${_os}" == "Android" ]]; then
+  depends+=(
+    'xsltproc'
+  )
+fi
 makedepends=(
   'git'
   'meson'
